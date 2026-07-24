@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  email String @unique
+  name String @map("firstName")
+  role Role? @default(USER)
+  profileId Int? @unique
+  profile Profile? @relation(fields: [profileId], references: [id], onDelete: Cascade) 
+
+  @@map("users")
+
+  @@unique([email, role])
+  @@index([id, email])
+}
+
+model Profile {
+  id Int @id @default(autoincrement())
+  bio String?
+  user User?
+  userId Int @unique
+}
+
+// model User {
+//   firstName String
+//   lastName String
+//   profile Profile?
+
+//   @@id([firstName, lastName])
+// }
+
+// model Profile {
+//   id Int @id
+//   userFirstName String
+//   userLastName String
+//   user User @relation(fields: [userFirstName,userLastName], references: [firstName, lastName])
+
+//   @@unique([userFirstName, userLastName])
+// }
+
+enum Role {
+  USER
+  ADMIN
+}
