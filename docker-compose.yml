@@ -3,7 +3,7 @@ services:
     image: postgres:17
     restart: unless-stopped
     environment:
-      POSTGRES_USER: prisma
+      POSTGRES_USER: testDB
       POSTGRES_PASSWORD: prisma
       POSTGRES_DB: prisma_app
     ports:
@@ -11,7 +11,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U prisma -d prisma_app"]
+      test: ["CMD-SHELL", "pg_isready -U testDB -d prisma_app"]
       interval: 5s
       timeout: 5s
       retries: 5
