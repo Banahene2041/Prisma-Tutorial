@@ -33,6 +33,7 @@ model Post {
   id Int @id @default(autoincrement())
   authorId Int
   title String
+  content String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   published Boolean @default(false)
