@@ -14,6 +14,7 @@ model User {
   role Role? @default(USER)
   profileId Int? @unique
   profile Profile? @relation(fields: [profileId], references: [id], onDelete: Cascade) 
+  posts Post[]
 
   @@map("users")
 
@@ -26,6 +27,18 @@ model Profile {
   bio String?
   user User?
   userId Int @unique
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+  authorId Int
+  title String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  published Boolean @default(false)
+  author User @relation(fields: [authorId], references: [id])
+
+  @@map("posts")
 }
 
 // model User {
