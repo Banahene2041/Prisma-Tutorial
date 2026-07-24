@@ -37,8 +37,18 @@ model Post {
   updatedAt DateTime @updatedAt
   published Boolean @default(false)
   author User @relation(fields: [authorId], references: [id])
+  categories Category[]
 
   @@map("posts")
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  name String
+  posts Post[]
+
+
+  @@map("categories")
 }
 
 // model User {
