@@ -30,9 +30,17 @@ export async function GET() {
           name:{
             contains: "Alice",
             mode: "insensitive",
+          },
+        },
+        is:{
+          email:{
+            startsWith: "b",
           }
         }
       }
+    },
+    include:{
+      author: true,
     }
   })
   return new Response(JSON.stringify(posts), { status: 200 });
