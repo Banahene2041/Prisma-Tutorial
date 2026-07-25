@@ -7,6 +7,9 @@ export async function GET() {
     },
     _avg:{
         likeNum: true,
+    },
+    _count:{
+        id: true,
     }
   });
 
