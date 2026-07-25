@@ -40,8 +40,16 @@ export async function GET() {
       },
     },
     select:{
+      id: true,
       title: true,
-    }
+      content: true,
+      author:{
+        select:{
+          id: true,
+          name: true,
+        }
+      }
+    },
   });
   return new Response(JSON.stringify(posts), { status: 200 });
 }
