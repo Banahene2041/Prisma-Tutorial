@@ -14,6 +14,7 @@ export async function GET() {
           title: {
             contains: "twitter",
             mode:"insensitive",
+            
           },
         },
       ],
