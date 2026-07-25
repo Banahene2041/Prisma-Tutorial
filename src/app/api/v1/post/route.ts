@@ -26,7 +26,7 @@ export async function GET() {
   const posts = await prisma.post.findMany({
     where: {
       author:{
-        is:{
+        isNot:{
           name:{
             contains: "Alice",
             mode: "insensitive",
