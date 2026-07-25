@@ -20,8 +20,8 @@ export async function GET() {
   const users = await prisma.user.findMany({
     where: {
       posts: {
-        some: {
-          published: true,
+        none: {
+          published: false,
         },
       },
     },
