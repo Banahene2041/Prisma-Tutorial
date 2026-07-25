@@ -1,6 +1,5 @@
 import prisma from "@/lib/prisma";
 
-
 interface Body {
   name: string;
   email: string;
