@@ -25,23 +25,23 @@ export async function GET() {
   // });
   const posts = await prisma.post.findMany({
     where: {
-      author:{
-        isNot:{
-          name:{
+      author: {
+        isNot: {
+          name: {
             contains: "Alice",
             mode: "insensitive",
           },
         },
-        is:{
-          email:{
+        is: {
+          email: {
             startsWith: "b",
-          }
-        }
-      }
+          },
+        },
+      },
     },
-    include:{
-      author: true,
+    select:{
+      title: true,
     }
-  })
+  });
   return new Response(JSON.stringify(posts), { status: 200 });
 }
