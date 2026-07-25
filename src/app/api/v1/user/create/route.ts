@@ -38,27 +38,36 @@ import prisma from "@/lib/prisma";
 //   });
 // }
 
-// multiple users with multiple posts and categories
-export async function POST() {
-  const users = await prisma.user.createMany({
-    data: [
-      {
-        name: "Enoch Agyemang",
-        email: "enochagyema@gmail.com",
-      },
-      {
-        name: "John Doe",
-        email: "john.doe@example.com",
-      },
-      {
-        name: "Jane Doe",
-        email: "jane.doe@example.com",
-      },
-    ],
-    skipDuplicates: true,
-  });
+interface Body {
+  name: string;
+  email: string;
+}
 
-  return new Response(JSON.stringify({ users }), {
+// multiple users with multiple posts and categories
+export async function POST(request: Request) {
+  const body: Body = await request.json();
+  const user = await prisma.user.create({
+    data: body,
+  })
+//   const users = await prisma.user.createMany({
+//     data: [
+//       {
+//         name: body.name,
+//         email: body.email,
+//       },
+//       {
+//         name: "John Doe",
+//         email: "john.doe@example.com",
+//       },
+//       {
+//         name: "Jane Doe",
+//         email: "jane.doe@example.com",
+//       },
+//     ],
+//     skipDuplicates: true,
+//   });
+
+  return new Response(JSON.stringify({ user }), {
     status: 200,
   });
 }
