@@ -22,7 +22,7 @@ export async function POST(request: Request) {
                 },
                 {
                   where: { id: 2 },
-                  create: { name: "Databases" },
+                  create: { name: "Databases" }
                 },
               ],
             },
