@@ -20,12 +20,12 @@ export async function GET() {
   const users = await prisma.user.findMany({
     where: {
       posts: {
-        every:{
+        some: {
           published: true,
-        }
-      }
-    }
-  })
+        },
+      },
+    },
+  });
   return new Response(JSON.stringify(users), {
     status: 200,
   });
